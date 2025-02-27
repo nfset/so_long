@@ -1,36 +1,40 @@
-# Zmienna kompilatora
-CC = gcc
 
-# Flagi kompilatora
+CC = cc
+
+# Flagi do kompilacji MLX
 CFLAGS = -I./minilibx-linux -O3 -g
 
-# Flagi linkera
+# Flagi do linkowania MLX
 LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
-# Nazwa pliku wykonywalnego
-EXEC = main_window
+# Nazwa dla so longa, całej tej gry benc
+EXEC = so_long
 
-# Pliki obiektowe
-OBJ = main.o
+# Lista plików źródłowych
+SRC = main.c keyboard_input.c
 
-# Domyślna reguła
+# Tworzenie NAZW plikow obiektowych (na podstawie plików .c)
+OBJ = $(SRC:.c=.o)
+
+# Deafult
 all: $(EXEC)
 
-# Kompilacja pliku main.c do pliku obiektowego
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c -o main.o
+# Kompilacja plików .c do plików obiektowych
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Linkowanie pliku obiektowego z biblioteką minilibx i innymi bibliotekami
+# Linkowanie plików obiektowych z biblioteką minilibx i innymi bibliotekami
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS)
 
-# Usuwanie plików obiektowych i wykonawczych
+# Usuwanie plików obiektowych
 clean:
 	rm -f $(OBJ)
 
-# Usuwanie plików wykonawczych
+# To samo co clean + plik wykonawczy
 fclean: clean
 	rm -f $(EXEC)
 
-# Reguła do wykonania kompilacji i czyszczenia
+# stworz od nowa ze wszystkim
 re: fclean all
+

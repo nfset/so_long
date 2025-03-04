@@ -11,29 +11,39 @@ LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 EXEC = so_long
 
 # Lista plików źródłowych
-SRC = main.c keyboard_input.c
+SRC = main.c keyboard_input.c manage_window.c error_handler.c map_parser.c
 
 # Tworzenie NAZW plikow obiektowych (na podstawie plików .c)
 OBJ = $(SRC:.c=.o)
 
+#Linkowanie biblioteki libft
+LIBFT = libft
+
+LIBFTL = $(LIBFT)/libft.a
+
 # Deafult
 all: $(EXEC)
+	
+$(LIBFTL):
+	@make -C $(LIBFT)/
 
 # Kompilacja plików .c do plików obiektowych
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c | $(LIBFTL)
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 # Linkowanie plików obiektowych z biblioteką minilibx i innymi bibliotekami
-$(EXEC): $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS)
+$(EXEC): $(OBJ) | $(LIBFTL)
+	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS) -L -l $(LIBFTL)
 
 # Usuwanie plików obiektowych
 clean:
 	rm -f $(OBJ)
+	@make clean -C $(LIBFT)
 
 # To samo co clean + plik wykonawczy
 fclean: clean
 	rm -f $(EXEC)
+	@make fclean -C $(LIBFT)
 
 # stworz od nowa ze wszystkim
 re: fclean all

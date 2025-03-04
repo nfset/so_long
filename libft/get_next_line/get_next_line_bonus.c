@@ -6,7 +6,7 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:59:41 by apieniak          #+#    #+#             */
-/*   Updated: 2025/02/02 15:00:38 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:13:42 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*next_line(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = my_calloc(ft_strlen(buffer) - i, 1);
+	line = my_calloc(ft_strlen_gnl(buffer) - i, 1);
 	if (!line)
 	{
 		free(buffer);
@@ -74,7 +74,7 @@ char	*textf_read(char *buffer, int fd)
 	while (buff_count > 0)
 	{
 		buff_supp[buff_count] = '\0';
-		buffer = ft_strjoin(buffer, buff_supp);
+		buffer = ft_strjoin_gnl(buffer, buff_supp);
 		if (!buffer)
 			free(buff_supp);
 		if (!buffer)

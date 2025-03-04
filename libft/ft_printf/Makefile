@@ -2,7 +2,7 @@ SRCS		= ft_printf.c \
 			  ft_functions.c \
 			  ft_utils.c 
 OBJS		= ${SRCS:.c=.o}
-NAME		= libftprintf.a
+NAME		= libft.a
 CC			= gcc -Wall -Wextra -Werror
 
 %.o: %.c ft_printf.h

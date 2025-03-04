@@ -6,7 +6,7 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:57:03 by apieniak          #+#    #+#             */
-/*   Updated: 2025/02/02 14:59:10 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:08:43 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	search_for_char(char *str, char sign)
 	return (0);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen_gnl(char *str)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *src, char *dest)
+char	*ft_strjoin_gnl(char *src, char *dest)
 {
 	size_t	i;
 	size_t	j;
@@ -63,7 +63,7 @@ char	*ft_strjoin(char *src, char *dest)
 
 	if (!src || !dest)
 		return (NULL);
-	new = my_calloc(ft_strlen(src) + ft_strlen(dest) + 1, 1);
+	new = my_calloc(ft_strlen_gnl(src) + ft_strlen_gnl(dest) + 1, 1);
 	if (!new)
 		return (NULL);
 	i = 0;

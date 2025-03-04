@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:08:33 by apieniak          #+#    #+#             */
-/*   Updated: 2024/12/20 14:48:18 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:38:55 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdint.h>
-
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }			t_list;
 
+int		ft_printf(const char *string, ...);
+char	*get_next_line(int fd);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

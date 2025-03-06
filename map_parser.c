@@ -6,51 +6,77 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:18:08 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/04 16:04:56 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/06 20:49:15 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	open_and_print(char *file_name)
-{		
-		int		fd;
-		char	*line;
+char **map_to_array(char *file_name, t_game *game)
+{
+	char **pierdolona_w_dupe;
 
-		fd = open(file_name, 0, O_RDONLY);
-		line = get_next_line(fd);
-		while (line != NULL)
-		{
-			printf("%s", line);
-			free(line);
-			line = get_next_line(fd);
-		}
-		
-		printf("\n");
+	game->map_height = lines_in_map(file_name);
+	game->map_width = columns_in_map(file_name);
+
+	pierdolona_w_dupe = (char **)ft_calloc(game->map_height + 1, sizeof(char));
 }
-char	**map_to_array(char *file_name)
+
+
+int	columns_in_map(char *file_name)
+{
+	int		fd;
+	int		columns;
+	char	*line;
+	char	*huj;
+
+	fd = open(file_name, O_RDONLY);
+	huj = get_next_line(fd);
+	if (!huj)
+		exit(EXIT_FAILURE);
+	line = ft_strtrim(huj, "\n");
+	columns = ft_strlen(line);
+	while (line != NULL)
+	{
+		free(line);
+		free(huj);
+		huj = get_next_line(fd);
+		line = ft_strtrim(huj, "\n");
+		if (line != NULL && columns != ft_strlen(line) )
+		{
+			ft_printf("wrong shape of the map\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	close(fd);
+	return (columns);
+}
+
+int	lines_in_map(char *file_name)
 {
 	int		fd;
 	char	*line;
-	char	**map;
 	int		i;
 
 	i = 0;
-	fd = open(file_name, 0, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		map[i] = line;
+		i++;
+		ft_printf("%s", line);
 		free(line);
 		line = get_next_line(fd);
-		i++;
 	}
-	return (map);
+	get_next_line(fd);
+	ft_printf("\n");
+	close(fd);
+	return (i);
 }
 
 void	print_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i] != NULL)

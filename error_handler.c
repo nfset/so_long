@@ -6,7 +6,7 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 19:33:50 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/04 16:18:20 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/06 19:16:45 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	is_good_file(char *str, char *file_name)
 	return (1);
 }
 
-void	error_handling(int argc, char *argv)
+void	error_handling(int argc, char *argv, t_game *game)
 {
 	if (argc != 2)
 	{
@@ -47,5 +47,7 @@ void	error_handling(int argc, char *argv)
 		exit(EXIT_SUCCESS);
 	}
 	else
-		open_and_print(argv);
+	{
+		//open_and_print(argv);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:34:25 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/04 16:18:31 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/06 20:32:23 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ typedef struct s_game
 	char	*map_file_name;
 	int		win_h; //window height
 	int		win_w; //window width
+	int		map_height;
+	int		map_width;
 
 }	t_game;
 
-void	print_map(char **map);
+int	columns_in_map(char *file_name);
 
-char	**map_to_array(char *file_name);
+int	lines_in_map(char *file_name);
 
 //function which opens a file, and print map in console | map_parser.c
 void	open_and_print(char *file_name);
@@ -49,6 +51,6 @@ int	exit_game(t_game *game);
 void	create_main_window(t_game *game);
 
 //function which is handling wrong input | error_handler.c
-void	error_handling(int argc, char *argv);
+void	error_handling(int argc, char *argv, t_game *game);
 
 #endif

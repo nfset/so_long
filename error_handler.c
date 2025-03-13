@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 19:33:50 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/06 19:16:45 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:53:49 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 size_t	is_good_file(char *str, char *file_name)
-{	
+{
 	size_t	i;
 	size_t	j;
 
@@ -45,9 +45,5 @@ void	error_handling(int argc, char *argv, t_game *game)
 	{
 		ft_printf("Wrong file type");
 		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		//open_and_print(argv);
 	}
 }

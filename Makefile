@@ -11,7 +11,7 @@ LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 EXEC = so_long
 
 # Lista plików źródłowych
-SRC = main.c keyboard_input.c manage_window.c error_handler.c map_parser.c
+SRC = main.c keyboard_input.c manage_window.c error_handler.c map_parser.c map_checker.c
 
 # Tworzenie NAZW plikow obiektowych (na podstawie plików .c)
 OBJ = $(SRC:.c=.o)

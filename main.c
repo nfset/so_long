@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:14:53 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/06 20:41:00 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:40:26 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	main(int argc, char **argv)
 		free(game);
 		return (EXIT_FAILURE);
 	}
-	int rows = lines_in_map(argv[1]);
-	int columns = columns_in_map(argv[1]);
-	ft_printf("\n rows: %d \n columns: %d \n", rows, columns);
+	map_to_array(argv[1], game);
 	create_main_window(game);
 	mlx_hook(game->main_win, 17, 0, exit_game, game);
 	mlx_key_hook(game->main_win, main_window_keys, game);

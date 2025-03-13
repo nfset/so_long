@@ -3,27 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:18:08 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/06 20:49:15 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:34:21 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char **map_to_array(char *file_name, t_game *game)
+void	map_to_array(char *file_name, t_game *game)
 {
-	char **pierdolona_w_dupe;
+	int		i;
+	int		fd;
+	char	*line;
 
+	i = 0;
+	fd = open(file_name, O_RDONLY);
 	game->map_height = lines_in_map(file_name);
-	game->map_width = columns_in_map(file_name);
-
-	pierdolona_w_dupe = (char **)ft_calloc(game->map_height + 1, sizeof(char));
+	game->map_width = columns_in_map(file_name, game);
+	game->map = ft_calloc(game->map_height * game->map_width, sizeof(char));
+	if (!game->map)
+		exit(1);
+	line = get_next_line(fd);
+	if (!line)
+		exit(EXIT_FAILURE);
+	while (line != NULL)
+	{
+		game->map[i] = line;
+		line = get_next_line(fd);
+		i++;
+	}
+	close(fd);
+	search_map(game);
 }
 
-
-int	columns_in_map(char *file_name)
+int	columns_in_map(char *file_name, t_game *game)
 {
 	int		fd;
 	int		columns;
@@ -42,10 +57,10 @@ int	columns_in_map(char *file_name)
 		free(huj);
 		huj = get_next_line(fd);
 		line = ft_strtrim(huj, "\n");
-		if (line != NULL && columns != ft_strlen(line) )
+		if (line != NULL && columns != ft_strlen(line))
 		{
 			ft_printf("wrong shape of the map\n");
-			exit(EXIT_FAILURE);
+			exit_game(game);
 		}
 	}
 	close(fd);
@@ -60,7 +75,11 @@ int	lines_in_map(char *file_name)
 
 	i = 0;
 	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		exit(EXIT_FAILURE);
 	line = get_next_line(fd);
+	if (!line)
+		exit(EXIT_FAILURE);
 	while (line != NULL)
 	{
 		i++;
@@ -68,21 +87,20 @@ int	lines_in_map(char *file_name)
 		free(line);
 		line = get_next_line(fd);
 	}
-	get_next_line(fd);
 	ft_printf("\n");
 	close(fd);
 	return (i);
 }
 
-void	print_map(char **map)
-{
-	int	i;
+// void	print_map(t_game *game)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map[i] != NULL)
-	{
-		ft_printf("%s", map[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
+// 	i = 0;
+// 	while (i < game->map_height)
+// 	{
+// 		ft_printf("%s", game->map[i]);
+// 		i++;
+// 	}
+// 	ft_printf("\n");
+// }

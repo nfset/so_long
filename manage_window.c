@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_window.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:20:00 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/13 18:39:14 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:30:28 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ void	free_map(t_game *game)
 
 int	exit_game(t_game *game)
 {
-	if (game->mlx != NULL)
-	{
+	if (game->main_win != NULL)
 		mlx_destroy_window(game->mlx, game->main_win);
-		mlx_destroy_display(game->mlx);
-	}
-	if (game->map[0][0] != 0)
+	if (game->map != NULL)
 		free_map(game);
+	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free(game);
 	exit(EXIT_SUCCESS);

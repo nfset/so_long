@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:18:08 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/13 18:34:21 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:31:23 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	map_to_array(char *file_name, t_game *game)
 
 	i = 0;
 	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		error_game("File is empty or doesn't exist", game);
 	game->map_height = lines_in_map(file_name);
 	game->map_width = columns_in_map(file_name, game);
 	game->map = ft_calloc(game->map_height * game->map_width, sizeof(char));
@@ -58,7 +60,9 @@ int	columns_in_map(char *file_name, t_game *game)
 		huj = get_next_line(fd);
 		line = ft_strtrim(huj, "\n");
 		if (line != NULL && columns != ft_strlen(line))
-		{
+		{	
+			free(huj);
+			free(line);
 			ft_printf("wrong shape of the map\n");
 			exit_game(game);
 		}

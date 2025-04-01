@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 19:33:50 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/11 16:53:49 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:49:41 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ size_t	is_good_file(char *str, char *file_name)
 		j--;
 	}
 	return (1);
+}
+
+void	error_game(const char *text, t_game *game)
+{
+	ft_printf("%s", text);
+	exit_game(game);
 }
 
 void	error_handling(int argc, char *argv, t_game *game)

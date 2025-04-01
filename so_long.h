@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:34:25 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/13 18:47:27 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:39:22 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,13 @@ void	error_handling(int argc, char *argv, t_game *game);
 //function allocate memory for map + saves it in a 2D array | map_parser.c
 void	map_to_array(char *file_name, t_game *game);
 
+//function which prints an error and free the memory | error_handler.c
+void	error_game(const char *text, t_game *game);
+
 void	print_map(t_game *game);
 
 int		search_map(t_game *game);
+
+int		is_correct_char(char c, t_game *game);
 
 #endif

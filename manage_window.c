@@ -6,7 +6,7 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:20:00 by apieniak          #+#    #+#             */
-/*   Updated: 2025/03/27 14:30:28 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/05/09 22:05:27 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,29 @@ void	free_map(t_game *game)
 	free(game->map);
 }
 
+void	destroy_img(t_game *game)
+{
+	if (game->wall_img)
+		mlx_destroy_image(game->mlx, game->wall_img);
+	if (game->exit_img)
+		mlx_destroy_image(game->mlx, game->exit_img);
+	if (game->floor_img)
+		mlx_destroy_image(game->mlx, game->floor_img);
+	if (game->player_img)
+		mlx_destroy_image(game->mlx, game->player_img);
+	if (game->collectible_img)
+		mlx_destroy_image(game->mlx, game->collectible_img);
+}
+
 int	exit_game(t_game *game)
 {
 	if (game->main_win != NULL)
 		mlx_destroy_window(game->mlx, game->main_win);
 	if (game->map != NULL)
 		free_map(game);
+	if (game->wall_img || game->exit_img || game->floor_img
+			|| game->collectible_img || game->player_img)
+		destroy_img(game);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free(game);
@@ -39,8 +56,8 @@ int	exit_game(t_game *game)
 
 void	create_main_window(t_game *game)
 {
-	game->win_h = 800;
-	game->win_w = 600;
+	game->win_h = game->map_height * 48;
+	game->win_w = game->map_width * 48;
 	game->main_win = mlx_new_window(game->mlx, game->win_w,
 			game->win_h, "so_long");
 	if (!game->main_win)

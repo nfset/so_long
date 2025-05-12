@@ -6,7 +6,7 @@
 /*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:44:39 by apieniak          #+#    #+#             */
-/*   Updated: 2025/04/01 15:38:51 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/05/12 21:47:32 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_correct_char(char c, t_game *game)
 	return (0);
 }
 
-int	search_map(t_game *game)
+void	search_map(t_game *game)
 {
 	int	i;
 	int	j;
@@ -44,7 +44,7 @@ int	search_map(t_game *game)
 	if (game->is_player == 1 && game->is_exit == 1 && game->is_collect != 0)
 	{
 		ft_printf("Map is valid\n");
-		return (1);
+		print_copy_map(game);
 	}
 	else
 		error_game("Map is invalid", game);

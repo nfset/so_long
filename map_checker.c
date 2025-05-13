@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:44:39 by apieniak          #+#    #+#             */
-/*   Updated: 2025/05/12 21:47:32 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:44:20 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	search_map(t_game *game)
 	}
 	if (game->is_player == 1 && game->is_exit == 1 && game->is_collect != 0)
 	{
-		ft_printf("Map is valid\n");
 		print_copy_map(game);
 	}
 	else

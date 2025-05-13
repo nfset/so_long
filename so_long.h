@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:34:25 by apieniak          #+#    #+#             */
-/*   Updated: 2025/05/12 21:30:51 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:40:48 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ typedef struct s_game
 	int		win_h; //window height
 	int		win_w; //window width
 	int		map_height; // the height of the map
-	int		map_width;  // the width of the map
+	int		map_width;	// the width of the map
 	int		is_player;	// is there a player?
 	int		is_exit;	// is there an exit?
 	int		is_collect; // amount of collectibles
-	int		counter;  // counter for moves
+	int		counter;	// counter for moves
 	int		player_x; // x position of the player
 	int		player_y; // y position of the player
 }	t_game;
@@ -99,10 +99,10 @@ int		is_correct_char(char c, t_game *game);
 void	put_images_map(t_game *game);
 
 //Function which sets images to void pointers | main.c
-void 	set_imgval(t_game *game);
+void	set_imgval(t_game *game);
 
 //Functionw that destroys xpm images | manage_window.c
-void	destroy_img(t_game *game); 
+void	destroy_img(t_game *game);
 
 void	char_mover(t_game *game, int x, int y);
 void	player_cords(t_game *game);
@@ -110,6 +110,8 @@ void	player_cords(t_game *game);
 char	**copy_to_flood(t_game *game);
 
 void	print_copy_map(t_game *game);
+
+void	free_map_flood(t_game *game, t_floodfill *flood);
 
 
 #endif

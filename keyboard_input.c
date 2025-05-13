@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apieniak <apieniak@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: apieniak <apieniak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:06:13 by apieniak          #+#    #+#             */
-/*   Updated: 2025/05/12 20:34:35 by apieniak         ###   ########.fr       */
+/*   Updated: 2025/05/13 19:05:13 by apieniak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ int	main_window_keys(int key, t_game *game)
 		char_mover(game, 1, 0);
 	else
 		return (0);
+	return (0);
 }
